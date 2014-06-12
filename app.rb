@@ -30,6 +30,8 @@ def authenticate!
 end
 
 get '/' do
+  @meetups = Meetup.all.order("name ASC")
+  @title = "List of All meetups"
   erb :index
 end
 
