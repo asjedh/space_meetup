@@ -56,10 +56,30 @@ get '/example_protected_page' do
   authenticate!
 end
 
+get '/meetups/new' do
+  authenticate!
+  erb :'meetups/new.html'
+end
+
 get '/meetups/:id' do
  meetup = Meetup.where("id = ?", params[:id]).first
  @meetup_name = meetup.name
  @meetup_description = meetup.description
  @meetup_location = meetup.location
  erb :'meetups/show'
+end
+
+post '/meetups' do
+  meetup_info = params['meetup']
+  meetup = Meetup.new(name: meetup_info['name'], location: meetup_info['location'], description: meetup_info['description'])
+  if !meetup.valid?
+    flash[:notice] = meetup.errors.messages.inject([]) { |errors, (input, message)| errors << message }.join(";  ")
+    redirect '/meetups/new'
+  else
+    meetup.save
+    flash[:notice] = "Your Meetup has been made!"
+    redirect "/meetups/#{meetup.id}"
+  end
+
+
 end

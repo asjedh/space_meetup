@@ -38,3 +38,15 @@ a:visited {
   padding: 1em;
   background-color: #3B9089;
 }
+
+.new-meetup div input,
+.new-meetup div textarea {
+  color: black;
+  display: inline-block
+  ;
+ }
+
+.form-wrapper {
+  margin-bottom: 1em;
+
+}

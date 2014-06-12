@@ -15,6 +15,7 @@
 
     <ul class="top-bar-section">
       <% if signed_in? %>
+        <li><a href="/meetups/new">Create a New Meetup</a></li>
         <li>Signed in as <%= current_user.username %></a></li>
         <li><a href="/sign_out">Sign out</a></li>
       <% else %>
