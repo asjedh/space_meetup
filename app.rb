@@ -53,3 +53,7 @@ end
 get '/example_protected_page' do
   authenticate!
 end
+
+get '/meetups/:id' do
+  meetup = Meetup.find('?',params[:id])
+end
